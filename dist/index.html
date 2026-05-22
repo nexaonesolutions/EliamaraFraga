@@ -23,8 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- CSS Entry Point (Includes Tailwind) -->
-  <script type="module" crossorigin src="/assets/index-HyEPDpO4.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-Dts4kWSO.css">
+  <script type="module" crossorigin src="/assets/index-DkGisXwf.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-XuhtGBse.css">
 </head>
 <body class="bg-offwhite text-luxury-charcoal font-sans antialiased selection:bg-luxury-champagne selection:text-white">
 
@@ -46,8 +46,27 @@
                 <a href="#faq" class="text-xs font-semibold tracking-wider uppercase text-luxury-charcoal/80 hover:text-luxury-champagne transition-colors duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-luxury-champagne hover:after:w-full after:transition-all after:duration-300">FAQ</a>
             </nav>
 
-            <!-- Desktop CTA Button -->
-            <div class="hidden md:block">
+            <!-- Desktop CTA Button & Theme Toggle -->
+            <div class="hidden md:flex items-center gap-4">
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2.5 rounded-full border border-luxury-champagne/20 text-luxury-champagne hover:border-luxury-champagne hover:bg-luxury-champagne/5 transition-all duration-300 flex items-center justify-center" aria-label="Alternar Tema">
+                    <!-- Sun icon (shown in Onyx/dark mode) -->
+                    <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <!-- Moon icon (shown in Off-White/light mode) -->
+                    <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
                 <a href="https://wa.me/5544999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20exclusiva%20no%20Centro%20Est%C3%A9tico%20Eliamara%20Fraga!" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-full border border-luxury-champagne text-luxury-champagne hover:bg-gold-gradient hover:text-white font-semibold text-xs tracking-widest uppercase transition-all duration-400 ease-out shadow-sm hover:shadow-md" id="btn-navbar-cta">
                     Agendar Avaliação
                 </a>
@@ -70,7 +89,19 @@
             <a href="#a-especialista" class="mobile-link text-lg font-medium tracking-wide text-luxury-charcoal hover:text-luxury-champagne border-b border-luxury-charcoal/5 pb-3 transition-all duration-300">A Especialista</a>
             <a href="#faq" class="mobile-link text-lg font-medium tracking-wide text-luxury-charcoal hover:text-luxury-champagne border-b border-luxury-charcoal/5 pb-3 transition-all duration-300">FAQ</a>
         </nav>
-        <div class="mb-12">
+        <div class="mb-12 flex flex-col gap-4">
+            <!-- Mobile theme switch -->
+            <button id="theme-toggle-mobile" class="w-full inline-flex justify-center items-center gap-3 py-3 border border-luxury-champagne/20 text-luxury-champagne rounded-full font-semibold text-xs tracking-widest uppercase transition-all duration-300">
+                <svg id="theme-sun-mobile" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                </svg>
+                <svg id="theme-moon-mobile" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <span id="theme-text-mobile">Modo Midnight Onyx</span>
+            </button>
             <a href="https://wa.me/5544999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20exclusiva%20no%20Centro%20Est%C3%A9tico%20Eliamara%20Fraga!" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center items-center py-4 bg-gold-gradient text-white rounded-full font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-lg" id="btn-drawer-cta">
                 Agendar Avaliação
             </a>
@@ -271,6 +302,95 @@
             </div>
         </section>
 
+        <!-- Section: Simulador Clínico de Colágeno -->
+        <section class="py-24 lg:py-32 bg-offwhite border-t border-luxury-charcoal/5 relative overflow-hidden" id="simulador-colageno">
+            <div class="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                    <span class="scroll-reveal text-xs font-bold uppercase tracking-[0.3em] text-luxury-champagne mb-4 block">Calculadora Científica</span>
+                    <h2 class="scroll-reveal text-3xl sm:text-4xl font-light text-luxury-charcoal tracking-wide mb-6">Simulador Clínico de Colágeno</h2>
+                    <div class="scroll-reveal w-32 h-[1px] bg-luxury-champagne mx-auto mb-6"></div>
+                    <p class="scroll-reveal text-sm text-luxury-charcoal/65 leading-relaxed font-light">
+                        A partir dos 25 anos, a pele perde cerca de **1% de colágeno ao ano**. Descubra sua perda estimada e projete a regeneração com nossos protocolos avançados.
+                    </p>
+                </div>
+
+                <!-- Simulator Card Layout -->
+                <div class="scroll-reveal bg-white border border-luxury-charcoal/5 p-8 lg:p-12 rounded-2xl shadow-luxury grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Left Interactive Column (Inputs & Calculations) -->
+                    <div class="lg:col-span-6 flex flex-col gap-8">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <label for="age-slider" class="text-xs font-bold uppercase tracking-wider text-luxury-charcoal/80">Sua Idade Atual</label>
+                                <span class="font-serif text-3xl font-semibold text-luxury-champagne" id="age-display">35 anos</span>
+                            </div>
+                            <input type="range" id="age-slider" min="25" max="70" value="35" class="premium-range-slider">
+                        </div>
+
+                        <div class="border-t border-luxury-charcoal/5 pt-6 grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-[0.65rem] font-bold uppercase tracking-wider text-luxury-charcoal/50 block mb-1">Perda de Colágeno</span>
+                                <span class="font-serif text-3xl font-semibold text-red-500" id="collagen-loss">-10%</span>
+                            </div>
+                            <div>
+                                <span class="text-[0.65rem] font-bold uppercase tracking-wider text-luxury-charcoal/50 block mb-1">Índice Dermal</span>
+                                <span class="font-serif text-3xl font-semibold text-luxury-champagne" id="collagen-index">90%</span>
+                            </div>
+                        </div>
+
+                        <!-- Dermal index progress bar -->
+                        <div class="w-full h-2 bg-luxury-champagne/10 rounded-full overflow-hidden">
+                            <div id="collagen-progress" class="h-full bg-gold-gradient transition-all duration-500 ease-out" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual Column (Treatment Projection Timeline) -->
+                    <div class="lg:col-span-6 flex flex-col gap-6 bg-offwhite/50 border border-luxury-charcoal/5 p-6 lg:p-8 rounded-xl">
+                        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-luxury-champagne block border-b border-luxury-charcoal/5 pb-3">Projeção de Reposição pós-Tratamento</span>
+                        
+                        <!-- Timeline steps -->
+                        <div class="flex flex-col gap-5">
+                            <!-- 30 Days -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 flex items-center justify-center bg-luxury-champagne/10 rounded-full text-[0.65rem] font-bold text-luxury-champagne">30d</span>
+                                    <span class="text-xs font-medium text-luxury-charcoal/80">Estímulo Inicial</span>
+                                </div>
+                                <span class="text-xs font-bold text-luxury-champagne" id="sim-30d">+12% colágeno</span>
+                            </div>
+
+                            <!-- 90 Days -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 flex items-center justify-center bg-luxury-champagne/10 rounded-full text-[0.65rem] font-bold text-luxury-champagne">90d</span>
+                                    <span class="text-xs font-medium text-luxury-charcoal/80">Regeneração Dermal</span>
+                                </div>
+                                <span class="text-xs font-bold text-luxury-champagne" id="sim-90d">+35% colágeno</span>
+                            </div>
+
+                            <!-- 180 Days -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 flex items-center justify-center bg-luxury-champagne/10 rounded-full text-[0.65rem] font-bold text-luxury-champagne">180d</span>
+                                    <span class="text-xs font-medium text-luxury-charcoal/80">Densidade Máxima</span>
+                                </div>
+                                <span class="text-xs font-bold text-luxury-champagne" id="sim-180d">+78% colágeno</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button inside card -->
+                        <a href="https://wa.me/5544999999999" target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3.5 inline-flex justify-center items-center gap-2 bg-luxury-charcoal text-white rounded-full font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:bg-luxury-champagne hover:shadow-lg text-center" id="btn-sim-cta">
+                            Agendar Plano de Colágeno
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
         <!-- Sobre a Especialista (Conexão e Autoridade) -->
         <section class="py-24 lg:py-32 bg-offwhite border-t border-luxury-charcoal/5" id="a-especialista">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -340,6 +460,96 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
+
+        <!-- Section: Quiz de Protocolo Personalizado -->
+        <section class="py-24 lg:py-32 bg-offwhite border-t border-luxury-charcoal/5 relative overflow-hidden" id="esthetic-quiz">
+            <div class="max-w-3xl mx-auto px-6 lg:px-8 relative z-10">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
+                    <span class="scroll-reveal text-xs font-bold uppercase tracking-[0.3em] text-luxury-champagne mb-4 block">Experiência Interativa</span>
+                    <h2 class="scroll-reveal text-3xl sm:text-4xl font-light text-luxury-charcoal tracking-wide mb-6">Quiz de Protocolo Clínico</h2>
+                    <div class="scroll-reveal w-32 h-[1px] bg-luxury-champagne mx-auto mb-6"></div>
+                    <p class="scroll-reveal text-sm text-luxury-charcoal/65 leading-relaxed font-light">
+                        Descubra a combinação ideal de tratamentos recomendada de forma personalizada para as necessidades exclusivas de sua pele.
+                    </p>
+                </div>
+
+                <!-- Quiz Card Container -->
+                <div class="scroll-reveal bg-white border border-luxury-charcoal/5 p-8 lg:p-12 rounded-2xl shadow-luxury relative min-h-[380px] flex flex-col justify-between" id="quiz-container">
+                    
+                    <!-- Progress Bar Header -->
+                    <div class="flex justify-between items-center mb-8 border-b border-luxury-charcoal/5 pb-4">
+                        <span class="text-[0.65rem] font-bold uppercase tracking-widest text-luxury-champagne" id="quiz-step-title">Etapa 1 de 3</span>
+                        <div class="w-32 h-1 bg-luxury-champagne/15 rounded-full overflow-hidden">
+                            <div id="quiz-progress-bar" class="h-full bg-gold-gradient transition-all duration-300" style="width: 33.3%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 1: Main skin concern -->
+                    <div class="quiz-card active flex flex-col gap-6" id="quiz-step-1">
+                        <h3 class="font-serif text-lg lg:text-xl font-medium text-luxury-charcoal">Qual é a sua principal queixa ou foco estético hoje?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="rugas">Rugas e Linhas de Expressão</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="flacidez">Flacidez e Perda de Firmeza</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="labios">Volume e Hidratação dos Lábios</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="contorno">Simetria e Contorno Facial</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Age range -->
+                    <div class="quiz-card flex flex-col gap-6" id="quiz-step-2">
+                        <h3 class="font-serif text-lg lg:text-xl font-medium text-luxury-charcoal">Em qual faixa etária você se encontra?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button class="quiz-option p-5 rounded-xl text-center text-xs lg:text-sm font-light text-luxury-charcoal" data-value="20-35">20 a 35 anos</button>
+                            <button class="quiz-option p-5 rounded-xl text-center text-xs lg:text-sm font-light text-luxury-charcoal" data-value="36-50">36 a 50 anos</button>
+                            <button class="quiz-option p-5 rounded-xl text-center text-xs lg:text-sm font-light text-luxury-charcoal" data-value="50+">Acima de 50 anos</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Goal -->
+                    <div class="quiz-card flex flex-col gap-6" id="quiz-step-3">
+                        <h3 class="font-serif text-lg lg:text-xl font-medium text-luxury-charcoal">Qual é o seu principal objetivo de resultado?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="previsao">Prevenção ativa e hidratação profunda</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="volume">Definição rápida de volume e projeção</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="natural">Rejuvenescimento gradual e natural</button>
+                            <button class="quiz-option p-4.5 rounded-xl text-left text-xs lg:text-sm font-light text-luxury-charcoal" data-value="lifting">Efeito lifting tridimensional</button>
+                        </div>
+                    </div>
+
+                    <!-- RESULTS SCREEN -->
+                    <div class="quiz-card flex flex-col gap-6 text-center items-center" id="quiz-result-screen">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-luxury-champagne/10 text-luxury-champagne mb-2">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <span class="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-luxury-champagne block">Seu Protocolo Recomendado</span>
+                        <h3 class="font-serif text-2xl font-semibold text-luxury-charcoal mb-2" id="quiz-recommended-title">Harmonização Facial + Toxina</h3>
+                        <p class="text-xs lg:text-sm text-luxury-charcoal/65 leading-relaxed font-light max-w-md mb-4" id="quiz-recommended-desc">
+                            Uma combinação focada em simetria e relaxamento muscular suave para atenuar as marcas de expressão mantendo total naturalidade.
+                        </p>
+                        
+                        <div class="w-full border-t border-luxury-charcoal/5 pt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                            <button class="px-6 py-3.5 border border-luxury-charcoal/15 text-luxury-charcoal rounded-full font-bold text-xs tracking-widest uppercase transition-all duration-300" id="btn-quiz-restart">Reiniciar Quiz</button>
+                            <a href="https://wa.me/5544999999999" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 bg-gold-gradient text-white rounded-full font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-xl" id="btn-quiz-cta">
+                                Agendar Protocolo Exclusivo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Footer buttons (shown for steps 1-3) -->
+                    <div class="flex justify-between items-center border-t border-luxury-charcoal/5 pt-6 mt-8" id="quiz-nav-footer">
+                        <button class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-luxury-charcoal/45 hover:text-luxury-charcoal disabled:opacity-0 transition-colors" id="btn-quiz-prev" disabled>Voltar</button>
+                        <button class="px-6 py-2.5 bg-luxury-charcoal text-white hover:bg-luxury-champagne rounded-full font-semibold text-xs tracking-wider uppercase transition-all duration-300" id="btn-quiz-next">Próximo</button>
+                    </div>
+
+                </div>
+
             </div>
         </section>
 

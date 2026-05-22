@@ -6,18 +6,83 @@
    CENTRO ESTÉTICO ELIAMARA FRAGA | LUXURY DESIGN SYSTEM
    ========================================================================== */
 
+:root {
+  --bg-primary: #FAFAFA;
+  --bg-primary-rgb: 250, 250, 250;
+  --bg-secondary: #FFFFFF;
+  --bg-secondary-rgb: 255, 255, 255;
+  --bg-card: #FAFAFA;
+  --text-primary: #222222;
+  --text-muted: rgba(34, 34, 34, 0.7);
+  --border-color: rgba(34, 34, 34, 0.05);
+  --radial-gradient: radial-gradient(circle at 50% 50%, #ffffff 0%, #fafafa 100%);
+  --shadow-luxury: 0 8px 32px 0 rgba(34, 34, 34, 0.04);
+  --shadow-luxury-hover: 0 20px 40px -10px rgba(197, 160, 89, 0.12);
+}
+
+body.theme-onyx {
+  --bg-primary: #121212;
+  --bg-primary-rgb: 18, 18, 18;
+  --bg-secondary: #1C1C1C;
+  --bg-secondary-rgb: 28, 28, 28;
+  --bg-card: #1A1A1A;
+  --text-primary: #FAFAFA;
+  --text-muted: rgba(250, 250, 250, 0.7);
+  --border-color: rgba(197, 160, 89, 0.15);
+  --radial-gradient: radial-gradient(circle at 50% 50%, #1c1c1c 0%, #121212 100%);
+  --shadow-luxury: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  --shadow-luxury-hover: 0 20px 40px -10px rgba(197, 160, 89, 0.25);
+}
+
 @layer base {
   body {
-    background-color: #FAFAFA;
-    color: #222222;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  body, header, section, div, p, a, button, input, span, ul, li, blockquote, svg {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
   }
+}
+
+/* Theme Override Hooks for Tailwind classes */
+.bg-offwhite {
+  background-color: var(--bg-primary) !important;
+}
+.text-luxury-charcoal {
+  color: var(--text-primary) !important;
+}
+.bg-white {
+  background-color: var(--bg-secondary) !important;
+}
+.border-luxury-charcoal\/5 {
+  border-color: var(--border-color) !important;
+}
+.text-luxury-charcoal\/70 {
+  color: var(--text-muted) !important;
+}
+.text-luxury-charcoal\/80 {
+  color: var(--text-muted) !important;
+}
+.text-luxury-charcoal\/65 {
+  color: var(--text-muted) !important;
+}
+.bg-luxury-radial {
+  background: var(--radial-gradient) !important;
+}
+.shadow-luxury {
+  box-shadow: var(--shadow-luxury) !important;
+}
+.shadow-luxury-hover:hover {
+  box-shadow: var(--shadow-luxury-hover) !important;
 }
 
 /* Custom Scrollbar */
@@ -141,7 +206,7 @@
 
 /* Custom Glassmorphic Blurs */
 .glassmorphism {
-  background: rgba(250, 250, 250, 0.8);
+  background: rgba(var(--bg-primary-rgb), 0.8) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -167,4 +232,85 @@
 
 .doctor-frame:hover::before {
   transform: translate(-6px, -6px);
+}
+
+/* ==========================================================================
+   SIMULADOR DE COLÁGENO & QUIZ ESTÉTICO | ESTILOS DE LUXO
+   ========================================================================== */
+
+/* Premium Gold Range Slider styling */
+.premium-range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(197, 160, 89, 0.2);
+  border-radius: 2px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.premium-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E0A990 0%, #D4AF37 50%, #C5A059 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid #FFFFFF;
+}
+
+.premium-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.6);
+}
+
+.premium-range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E0A990 0%, #D4AF37 50%, #C5A059 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid #FFFFFF;
+}
+
+.premium-range-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.6);
+}
+
+/* Quiz Navigation Transitions */
+.quiz-card {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: none;
+}
+
+.quiz-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  display: flex;
+}
+
+.quiz-option {
+  border: 1.5px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-option:hover {
+  border-color: #C5A059;
+  background-color: rgba(197, 160, 89, 0.05);
+  transform: translateY(-1px);
+}
+
+.quiz-option.selected {
+  border-color: #D4AF37;
+  background: linear-gradient(135deg, rgba(224, 169, 144, 0.08) 0%, rgba(197, 160, 89, 0.08) 100%);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.08);
 }

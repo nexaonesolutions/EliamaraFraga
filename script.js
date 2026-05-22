@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DRA. MARY CONCEIÇÃO | ESTÉTICA BIOMÉDICA
+   CENTRO ESTÉTICO ELIAMARA FRAGA | LUXURY CLINIC SPA
    LÓGICA E INTERAÇÕES DINÂMICAS DE LUXO (VANILLA JS)
    ========================================================================== */
 
@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sub-rotinas principais modularizadas em conformidade com altos padrões de Clean Code
     initNavbarScroll();
     initMobileDrawer();
-    initSkinManagementTabs();
     initFaqAccordion();
     initScrollReveal();
 
@@ -25,13 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const handleScroll = () => {
                 try {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('scrolled');
+                    if (window.scrollY > 40) {
+                        navbar.classList.add('scrolled', 'glassmorphism', 'py-3.5', 'border-b', 'border-luxury-champagne/10', 'shadow-sm');
+                        navbar.classList.remove('py-5');
                     } else {
-                        navbar.classList.remove('scrolled');
+                        navbar.classList.remove('scrolled', 'glassmorphism', 'py-3.5', 'border-b', 'border-luxury-champagne/10', 'shadow-sm');
+                        navbar.classList.add('py-5');
                     }
                 } catch (scrollErr) {
-                    console.error("System Exception no evento de scroll:", scrollErr);
+                    console.error("System Exception no evento de scroll da navbar:", scrollErr);
                 }
             };
 
@@ -52,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menu-toggle');
             const mobileDrawer = document.getElementById('mobile-drawer');
             const mobileLinks = document.querySelectorAll('.mobile-link');
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
             
             if (!menuToggle || !mobileDrawer) {
                 throw new Error("System Exception: Elementos de menu móvel ('#menu-toggle' ou '#mobile-drawer') ausentes no DOM.");
@@ -59,17 +63,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const toggleMenu = () => {
                 try {
-                    const isExpanded = menuToggle.classList.contains('active');
-                    if (isExpanded) {
-                        menuToggle.classList.remove('active');
-                        mobileDrawer.classList.remove('active');
+                    const isOpen = mobileDrawer.classList.contains('active');
+                    if (isOpen) {
+                        closeDrawer();
                     } else {
-                        menuToggle.classList.add('active');
-                        mobileDrawer.classList.add('active');
+                        openDrawer();
                     }
                 } catch (err) {
                     console.error("System Exception ao alternar estado do menu drawer:", err);
                 }
+            };
+
+            const openDrawer = () => {
+                mobileDrawer.classList.remove('right-[-100%]');
+                mobileDrawer.classList.add('right-0', 'active');
+                
+                // Transição do Hamburger para "X"
+                bar1.style.transform = 'translateY(6.5px) rotate(45deg)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'translateY(-6.5px) rotate(-45deg)';
+            };
+
+            const closeDrawer = () => {
+                mobileDrawer.classList.remove('right-0', 'active');
+                mobileDrawer.classList.add('right-[-100%]');
+                
+                // Transição do "X" de volta para Hamburger
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
             };
 
             menuToggle.addEventListener('click', toggleMenu);
@@ -78,8 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     try {
-                        menuToggle.classList.remove('active');
-                        mobileDrawer.classList.remove('active');
+                        closeDrawer();
                     } catch (err) {
                         console.error("System Exception ao fechar o menu drawer via link:", err);
                     }
@@ -92,115 +113,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 3. Sub-rotina: Init Skin Management Tabs
-     * Controla o componente interativo de fases do Gerenciamento de Pele.
-     * Altera o conteúdo explicativo e atualiza a imagem ilustrativa com efeito suave.
-     */
-    function initSkinManagementTabs() {
-        try {
-            const tabs = document.querySelectorAll('.phase-tab');
-            const phaseImage = document.getElementById('phase-image');
-            
-            if (tabs.length === 0) {
-                throw new Error("System Exception: Nenhuma aba '.phase-tab' encontrada no DOM.");
-            }
-            if (!phaseImage) {
-                throw new Error("System Exception: Elemento '#phase-image' ausente na seção científica.");
-            }
-
-            // Mapeamento das imagens premium por fase
-            const phaseImages = {
-                "1": "./assets/skin_science.png",  // Imagem científica
-                "2": "./assets/clinic_lobby.png",  // Imagem do lobby da clínica
-                "3": "./assets/dra_mary.png"       // Retrato da Dra. Mary (lapidação final)
-            };
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    try {
-                        const targetPhase = tab.getAttribute('data-phase');
-                        
-                        // Validação de Regra de Negócio (Business Exception)
-                        if (!targetPhase || !phaseImages[targetPhase]) {
-                            throw new Error(`Business Exception: A fase selecionada '${targetPhase}' é inválida ou não possui imagem associada.`);
-                        }
-
-                        // Remove a classe ativa de todas as abas
-                        tabs.forEach(t => t.classList.remove('active'));
-                        
-                        // Adiciona a classe ativa na aba selecionada
-                        tab.classList.add('active');
-                        
-                        // Aplica transição de opacidade suave na troca de imagem
-                        phaseImage.style.opacity = '0.2';
-                        phaseImage.style.transform = 'scale(0.98)';
-                        phaseImage.style.transition = 'all 0.3s ease';
-
-                        // Troca o source da imagem após o início do fade-out
-                        setTimeout(() => {
-                            try {
-                                phaseImage.src = phaseImages[targetPhase];
-                                phaseImage.style.opacity = '1';
-                                phaseImage.style.transform = 'scale(1)';
-                            } catch (imgErr) {
-                                console.error("System Exception ao carregar novo source de imagem:", imgErr);
-                            }
-                        }, 250);
-
-                    } catch (businessError) {
-                        console.warn(businessError.message);
-                    }
-                });
-            });
-
-        } catch (error) {
-            console.error("Falha ao inicializar as abas de gerenciamento de pele:", error.message);
-        }
-    }
-
-    /**
-     * 4. Sub-rotina: Init Faq Accordion
+     * 3. Sub-rotina: Init Faq Accordion
      * Lógica de colapso automático para o FAQ com cálculo dinâmico de altura.
      */
     function initFaqAccordion() {
         try {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            if (faqQuestions.length === 0) {
-                throw new Error("System Exception: Nenhum elemento '.faq-question' encontrado para o FAQ.");
+            const faqButtons = document.querySelectorAll('.faq-btn');
+            if (faqButtons.length === 0) {
+                throw new Error("System Exception: Nenhum elemento '.faq-btn' encontrado para o FAQ.");
             }
 
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
+            faqButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
                     try {
-                        const faqItem = question.parentElement;
-                        const faqAnswer = question.nextElementSibling;
+                        const item = btn.closest('.border');
+                        const answer = btn.nextElementSibling;
+                        const icon = btn.querySelector('.faq-icon');
                         
-                        if (!faqItem || !faqAnswer) {
+                        if (!item || !answer || !icon) {
                             throw new Error("System Exception: Estrutura do item de FAQ corrompida.");
                         }
 
-                        const isOpen = faqItem.classList.contains('active');
+                        const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
                         // Fecha todos os outros itens abertos para um visual minimalista e limpo
-                        document.querySelectorAll('.faq-item').forEach(item => {
+                        faqButtons.forEach(otherBtn => {
                             try {
-                                if (item !== faqItem) {
-                                    item.classList.remove('active');
-                                    item.querySelector('.faq-answer').style.maxHeight = null;
+                                if (otherBtn !== btn) {
+                                    otherBtn.setAttribute('aria-expanded', 'false');
+                                    otherBtn.nextElementSibling.style.maxHeight = null;
+                                    otherBtn.querySelector('.faq-icon').style.transform = 'none';
+                                    otherBtn.querySelector('.faq-icon').textContent = '+';
                                 }
                             } catch (closeErr) {
-                                console.error("System Exception ao auto-colapsar item do FAQ:", closeErr);
+                                console.error("System Exception ao auto-colapsar outros itens do FAQ:", closeErr);
                             }
                         });
 
                         // Alterna o estado do painel clicado
                         if (isOpen) {
-                            faqItem.classList.remove('active');
-                            faqAnswer.style.maxHeight = null;
+                            btn.setAttribute('aria-expanded', 'false');
+                            answer.style.maxHeight = null;
+                            icon.style.transform = 'none';
+                            icon.textContent = '+';
                         } else {
-                            faqItem.classList.add('active');
-                            // Calcula e define a altura real da rolagem para a animação do max-height funcionar perfeitamente
-                            faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+                            btn.setAttribute('aria-expanded', 'true');
+                            // Define a altura real do scroll para a animação suave do CSS max-height
+                            answer.style.maxHeight = answer.scrollHeight + 'px';
+                            icon.style.transform = 'rotate(45deg)';
+                            icon.textContent = '+'; // Mantém o caractere e rotaciona 45 graus para virar 'x'
                         }
                     } catch (itemError) {
                         console.error("Erro ao operar acordeão do FAQ:", itemError.message);
@@ -214,14 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 5. Sub-rotina: Init Scroll Reveal
+     * 4. Sub-rotina: Init Scroll Reveal
      * Utiliza o Intersection Observer para disparar as animações ao rolar a tela.
      */
     function initScrollReveal() {
         try {
             const revealElements = document.querySelectorAll('.scroll-reveal');
             if (revealElements.length === 0) {
-                return; // Silencioso: sem elementos para revelar nesta rota
+                return; // Sem elementos para revelar
             }
 
             // Configuração do Observador com margem confortável
@@ -230,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     try {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('active');
-                            // Remove o observador do elemento para otimizar memória após renderizado
+                            // Remove o observador do elemento após ativado para otimizar desempenho e memória
                             observer.unobserve(entry.target);
                         }
                     } catch (entryErr) {
@@ -238,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }, {
-                threshold: 0.08,             // Elemento 8% visível na janela
-                rootMargin: '0px 0px -40px 0px' // Revela um pouco antes de atingir o topo visível
+                threshold: 0.05,             // Elemento 5% visível na janela
+                rootMargin: '0px 0px -20px 0px' // Dispara ligeiramente antes do elemento ficar totalmente visível
             });
 
             revealElements.forEach(el => {

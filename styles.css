@@ -365,3 +365,12 @@ body.theme-onyx {
   animation: float-seal 5s infinite ease-in-out;
 }
 
+/* Pillars/Social Proof Ribbon Background and Contrast Fix */
+.bg-pillars-ribbon {
+  background-color: #222222 !important;
+}
+body.theme-onyx .bg-pillars-ribbon {
+  background-color: #161616 !important;
+}
+
+

@@ -49,7 +49,8 @@ body.theme-onyx {
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.03em;
   }
 }
 
